@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coffee Shop</title>
+<link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    list-style: none;
+    text-decoration: none;
+    scroll-behavior: smooth;
+}
+:root{
+    --main-color:#bc9667;
+    --second-color:#edeae3;
+    --text-color:#1b1b1b;
+    --bg-color:#fff;
+    --box-shadow:2px 2px 10px 4px rgb(14 55 54 / 15%);
+}
+body{
+    background: #f5f5f5;
+    color: var(--text-color);
+    padding-top:0px;
+}
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 50px;
+    background: var(--text-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+.logo img{
+    width: 60px;
+    display: block;
+}
+.navbar{
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+.navbar a{
+    color: #fff;
+    font-size: 1rem;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    display: block;
+}
+.navbar a:hover{
+    background: var(--main-color);
+    border-radius: 30px;
+    transition: 0.3s;
+}
+.header-icon{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.header-icon i{
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+}
+#menu-icon{
+    display: none;
+}
+.search-box{
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    background: #fff;
+    padding: 10px;
+}
+.search-box.active{
+    top: 100%;
+    box-shadow: var(--box-shadow);
+}
+.search-box input{
+    width: 100%;
+    padding: 15px;
+    border: none;
+    outline: none;
+}
+section{
+    padding: 100px;
+    scroll-margin-top: 90px;
+}
+.home {
+    min-height: 100vh;
+    background: url("bg.png") center/cover no-repeat;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    align-items: center;
+    position: relative;
+}
+.home-text h1{
+    font-size: 2.5rem;
+    color: #fff;
+}
+.home-text p{
+    color: #eee;
+    margin: 0.5rem 0 1.5rem;
+}
+.home-img img{
+    width: 100%;
+}
+.btn{
+    padding: 10px 35px;
+    background: var(--main-color);
+    color: #fff;
+    border-radius: 5px;
+    display: inline-block;
+}
+.about{
+    background: #fff;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(20rem,1fr));
+    gap: 2rem;
+    align-items: center;
+}
+.about-img img{
+    width: 100%;
+    border-radius: 10px;
+}
+.about-text h2{
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+.about-text p{
+    margin: 1rem 0;
+    font-size: 0.95rem;
+}
+.heading{
+    text-align: center;
+}
+.heading h2{
+    font-size: 1.8rem;
+    text-transform: uppercase;
+}
+.products-containers{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+.products-containers .box{
+    background: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+}
+.products-containers img{
+    width: 100%;
+}
+.box h3{
+    margin: 0.5rem 0;
+}
+.box span{
+    font-weight: 600;
+    color: var(--main-color);
+}
+.box a{
+    display: inline-block;
+    margin: 0.5rem 0;
+    padding: 6px 15px;
+    background: var(--main-color);
+    color: #fff;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+.box p{
+    font-size: 0.85rem;
+}
+.products-containers{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+.products-containers .box{
+    position: relative;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.5rem;
+    box-shadow: var(--box-shadow);
+}
+.products-containers .box:hover{
+    transform: translateY(-10px);
+    transition: 0.3s ease-in-out;
+}
+.products-containers .box img{
+    width: 100%;
+    height: 250px;
+    object-fit:contain;
+    object-position: center;
+    padding: 20px;
+    background: #f1f1f1;
+    border-radius: 0.5rem;
+}
+.products-containers .box h3{
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0.5rem 0 0.5rem;
+}
+.customers-img{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.customers-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+.customers-container .box{
+    padding: 20px;
+    box-shadow:var(--box-shadow);
+    border-radius:0.5rem;
+    text-align: center;
+}
+.customers .box{
+    background: #fff;
+    padding: 1.2rem;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    transition: 0.3s ease;
+}
+.customers .box:hover{
+    transform: translateY(-8px);
+}
+.customers .box h3{
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+}
+.customers .box p{
+    font-size: 0.9rem;
+    color: #555;
+}
+.footer{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    background: var(--text-color);
+    padding: 3rem 100px;
+}
+.footer-box h2{
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+.footer-box p{
+    color: #ccc;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+.footer-box li{
+    margin: 0.5rem 0;
+}
+.footer-box li a{
+    color: #ccc;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+.footer-box li a:hover{
+    color: var(--main-color);
+    padding-left: 5px;
+}
+.social-icons{
+    display: flex;
+    gap: 15px;
+    margin-top: 1rem;
+}
+.social-icons a{
+    font-size: 22px;
+    color: #fff;
+    transition: 0.3s;
+}
+.social-icons a:hover{
+    color: var(--main-color);
+    transform: translateY(-3px);
+}
+.copyright{
+    text-align: center;
+    background: #111;
+    color: #ccc;
+    padding: 1rem;
+    font-size: 0.9rem;
+}
+#contact{
+    padding: 0;
+    margin: 0;
+    height: 0;
+}
+.footer-logo{
+    width: 80px;
+    margin-bottom: 1rem;
+}
+.footer-box h3{
+    color: #fff;
+    margin-bottom: 1rem;
+}
+@media (max-width: 768px) {
+    header{
+        padding: 15px 20px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo{
+        margin-bottom: 0;
+    }
+    .navbar{
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: var(--text-color);
+        transition: 0.3s;
+        padding: 20px;
+        z-index: 999;
+    }
+    .navbar.active{
+        left: 0;
+    }
+    .navbar a{
+        width: 100%;
+        padding: 15px;
+        background: #222;
+        border-radius: 8px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .navbar a:hover{
+        background: var(--main-color);
+    }
+    .header-icon{
+        width: auto;
+        justify-content: flex-end;
+        margin-top: 0;
+        gap: 20px;
+    }
+
+    #menu-icon{
+        display: block;
+        color: #fff;
+        font-size: 28px;
+        cursor: pointer;
+    }
+
+    #search-icon{
+        display: none;
+    }
+
+    .search-box{
+        display: none;
+    }
+
+    .search-box.active{
+        display: none;
+    }
+
+    section{
+        padding: 80px 20px;
+    }
+
+    .home{
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.5rem;
+        padding-top: 100px;
+    }
+
+    .home-img{
+        order: -1;
+    }
+
+    .about{
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .products-containers{
+        grid-template-columns: 1fr;
+    }
+
+    .customers-container{
+        grid-template-columns: 1fr;
+    }
+
+    .footer{
+        grid-template-columns: 1fr;
+        padding: 3rem 20px;
+        text-align: center;
+    }
+    .social-icons{
+        justify-content: center;
+    }
+}
+</style>
+</head>
+<body>
+<header>
+    <a href="#" class="logo"><img src="logo.png"></a>
+    <ul class="navbar">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="header-icon">
+        <a href="#products"><i class='bx bx-cart' ></i></a>
+        <i class='bx bx-search' id="search-icon"></i>
+        <i class='bx bx-menu' id="menu-icon"></i>
+    </div>
+    <div class="search-box">
+        <input type="search" placeholder="Search here...">
+    </div>
+</header>
+<section class="home" id="home">
+    <div class="home-text">
+        <h1>Start Your Day With <br> A Coffee</h1>
+        <p>Experience the art of coffee with premium beans and perfect brews.</p>
+        <a href="#products" class="btn">Shop Now</a>
+    </div>
+    <div class="home-img">
+        <img src="main.png">
+    </div>
+</section>
+<section class="about" id="about">
+    <div class="about-img">
+        <img src="about.jpg">
+    </div>
+    <div class="about-text">
+        <h2>About Us</h2>
+        <p>
+            Welcome to our coffee shop, where every cup is crafted with care and passion. We believe great coffee starts with high-quality beans, responsibly sourced from trusted farms and roasted to bring out rich aromas and bold flavors. Our space is designed to be warm and inviting — a place to relax, connect, and enjoy meaningful moments. Whether you're grabbing a quick morning coffee or spending time with friends, our skilled baristas ensure consistency and quality in every brew. From classic espressos to handcrafted specialty drinks, we are committed to delivering an exceptional coffee experience, one cup at a time.
+        </p>
+        <a href="#" class="btn">Learn More</a>
+    </div>
+</section>
+<section class="products" id="products">
+    <div class="heading">
+        <h2>Our Products</h2>
+    </div>
+    <div class="products-containers">
+        <div class="box">
+            <img src="p1.png" class="products-img">
+            <h3>Americano</h3>
+            <span>$25</span>
+            <a href="#">Add to cart</a>
+            <p>Rich espresso flavor.</p>
+        </div>
+        <div class="box">
+            <img src="p2.png" class="products-img">
+            <h3>Latte</h3>
+            <span>$30</span>
+            <a href="#">Add to cart</a>
+            <p>Milk coffee blend.</p>
+        </div>
+        <div class="box">
+            <img src="p3.png" class="products-img">
+            <h3>Cappuccino</h3>
+            <span>$28</span>
+            <a href="#">Add to cart</a>
+            <p>Foamy perfection.</p>
+        </div>
+        <div class="box">
+            <img src="p4.png" class="products-img">
+            <h3>Mocha</h3>
+            <span>$32</span>
+            <a href="#">Add to cart</a>
+            <p>Chocolate coffee delight.</p>
+        </div>
+        <div class="box">
+            <img src="p5.png" class="products-img">
+            <h3>Espresso</h3>
+            <span>$20</span>
+            <a href="#">Add to cart</a>
+            <p>Strong & bold.</p>
+        </div>
+        <div class="box">
+            <img src="p6.png" class="products-img">
+            <h3>Espresso</h3>
+            <span>$20</span>
+            <a href="#">Add to cart</a>
+            <p>Strong & bold.</p>
+        </div>
+    </div>
+</section>
+<section class="customers" id="customers">
+    <div class="heading">
+        <h2>Our Customers</h2>
+    </div>
+    <div class="customers-container">
+        <div class="box">
+            <img src="rev1.jpg" class="customers-img">
+            <h3>John Doe</h3>
+            <p>"Best coffee in town! Highly recommend."</p>
+        </div>
+        <div class="box">
+            <img src="rev2.jpg" class="customers-img">
+            <h3>Jane Smith</h3>
+            <p>"Amazing atmosphere and friendly staff."</p>
+        </div>
+        <div class="box">
+            <img src="rev3.jpg" class="customers-img">
+            <h3>Mike Joy</h3>
+            <p>"A perfect place to relax and enjoy a great cup of coffee."</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact"></section>
+
+<section class="footer">
+    <div class="footer-box">
+        <img src="logo.png" class="footer-logo">
+        <h3>Coffee Shop</h3>
+        <div class="social-icons">
+            <a href="#"><i class='bx bxl-facebook'></i></a>
+            <a href="#"><i class='bx bxl-twitter'></i></a>
+            <a href="#"><i class='bx bxl-instagram'></i></a>
+            <a href="#"><i class='bx bxl-linkedin'></i></a>
+        </div>
+    </div>
+    <div class="footer-box">    
+        <h2>Support</h2>
+        <li><a href="#">Product</a></li>
+        <li><a href="#">Help & Support</a></li>
+        <li><a href="#">Return Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+        <li><a href="#">Product</a></li>
+    </div>
+    <div class="footer-box">    
+        <h2>View Guides</h2>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Blog Posts</a></li>
+        <li><a href="#">Our Branches</a></li>
+        <li><a href="#">Product</a></li>
+    </div>
+    <div class="footer-box">
+        <h2>Contact Info</h2>
+        <li><a href="#">123 Coffee St, Caffeine City</a></li>
+        <li><a href="#">+1 234 567 890</a></li>
+        <li><a href="#">info@coffeeshop.com</a></li>
+    </div>
+</section>
+<div class="copyright">
+    <p>&copy; 2026 Coffee Shop. All rights reserved.</p>
+</div>
+<script>
+const search = document.querySelector('.search-box');
+const searchIcon = document.querySelector('#search-icon');
+const menuIcon = document.querySelector('#menu-icon');
+const navbar = document.querySelector('.navbar');
+searchIcon.onclick = () => { 
+    search.classList.toggle('active'); 
+};
+menuIcon.onclick = () => {
+    navbar.classList.toggle('active');
+};
+let header = document.querySelector('header');
+window.addEventListener('scroll',function(){
+    header.classList.toggle('shadow',window.scrollY>0);
+});
+window.onscroll = () => {
+    search.classList.remove('active');
+    navbar.classList.remove('active');
+}
+</script>
+</body>
+</html>
